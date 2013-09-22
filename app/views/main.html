@@ -1,9 +1,16 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div class="container">
+	<label for="total_population">Population</label>
+	<input name="total_population" type="number" ng-model="population.total"/>
+	<label for="prevalence">Prevalence (per 1000)</label>
+	<input name="prevalence" type="number" ng-model="prevalence"/>
+	<button type="button" class="btn btn-primary" ng-click="apply_prevalence()">Apply Prevalence</button>
+
+	<label for="sensitivity">Sensitivity</label>
+	<input name="sensitivity" type="number" ng-model="sensitivity"/>
+	<button type="button" class="btn btn-primary" ng-click="apply_sensitivity()">Apply Sensitivity</button>
+
+	<label for="specificity">Specificity</label>
+	<input name="specificity" type="number" ng-model="specificity"/>
+	<button type="button" class="btn btn-primary" ng-click="apply_specificity()">Apply Specificity</button>
+	<div ng-force-bubble-chart></div>
 </div>
