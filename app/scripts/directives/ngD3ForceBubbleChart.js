@@ -168,10 +168,11 @@ angular.module('mediconditionalApp')
 							}
 						);
 
-
         scope.$watch("population.total", function(new_val, old_val){
-        	if(new_val>old_val){
-        		for (var j=old_val; j<new_val; j++){
+        	console.log(new_val, old_val||0)
+        	if(new_val>(old_val||0)){
+        		for (var j=old_val||0; j<new_val; j++){
+        		console.log(j)
         			add_nodes(j,20);
         		}
         		update();
