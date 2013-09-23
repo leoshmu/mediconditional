@@ -180,7 +180,6 @@ angular.module('mediconditionalApp')
         	}
         })
         scope.$watch('nodes', function(new_val, old_val){
-
         	update();
         }, true)
 
