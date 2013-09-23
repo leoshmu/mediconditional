@@ -1,0 +1,60 @@
+<div id="chart-holder">
+	<div class="row chart-top-label">
+		<div class="col-lg-3 col-sm-3">
+		</div>
+		<div class="col-lg-9 col-sm-9">
+			<div class="row">
+				<div ng-show="is_prevalence_applied" class="col-lg-6 col-sm-6 text-center">
+					Disease ({{population.disease_count}})
+				</div>
+				<div ng-show="is_prevalence_applied" class="col-lg-6 col-sm-6 text-center">
+					No Disease ({{population.healthy_count}})
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-3 col-sm-3">
+			<div ng-show = "is_sensitivity_applied || is_specificity_applied" class="chart-left-label row">
+				<div class="col-sm-6 col-lg-6">
+					<div class="top-left-label">
+						Positive Test ({{population.true_positive_count + population.false_positive_count}})
+					</div>
+					<div class="bottom-left-label">
+						Negative Test ({{population.true_negative_count + population.false_negative_count}})
+					</div>
+				</div>
+				<div class="col-sm-6 col-lg-6">
+					<div class="top-left-label">
+						<div class="fraction-label">
+							<span class="fraction-label-text">
+								PPV:
+							</span>
+						</div>
+						<div class="fraction">
+							<span class="numerator text-center">{{population.true_positive_count}} </span>
+							<span class="denominator text-center"> ({{population.true_positive_count}} + {{population.false_positive_count}})</span>
+						</div>
+
+					</div>
+					<div class="bottom-left-label">
+						<div class="fraction-label">
+							<span class="fraction-label-text">
+								NPV:
+							</span>
+						</div>
+						<div class="fraction">
+							<span class="numerator text-center">{{population.true_negative_count}} </span>
+							<span class="denominator text-center"> ({{population.true_negative_count}} + {{population.false_negative_count}})</span>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-9 col-sm-9">
+			<svg></svg>
+		</div>
+
+	</div>
+</div>
