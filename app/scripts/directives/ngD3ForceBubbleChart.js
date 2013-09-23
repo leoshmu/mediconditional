@@ -20,10 +20,11 @@ angular.module('mediconditionalApp')
   	}
 
     return {
-      template: '<div style="border:solid 2px red;"></div>',
+      transclude:true,
+      templateUrl: '/views/sensitivity_specificity_chart.html',
       restrict: 'EA',
       link: function postLink(scope, element, attrs) {
-    		var width = element.width(),
+    		var width = element.find('svg').parent().width(),
       			height = 600,
       			damper = 0.2,
 						layout_gravity = .2,
