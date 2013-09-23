@@ -3,6 +3,13 @@
 angular.module('mediconditionalApp')
   .directive('ngForceBubbleChart', function () {
 
+  	// no clue what to make the colors.
+  	// Is there a way to have some color
+  	// represent disease/healthy
+  	// and some shading of it represent test outcome
+  	// and the False Positive and False Negatives have something
+  	// similar too?
+  	//
   	var fill_color = function(node){
   		if(!node.disease){
   			if(node.test_positive){
@@ -20,10 +27,12 @@ angular.module('mediconditionalApp')
   	}
 
     return {
-      template: '<div style="border:solid 2px red;"></div>',
+      transclude:true,
+      templateUrl: '/views/sensitivity_specificity_chart.html',
       restrict: 'EA',
+
       link: function postLink(scope, element, attrs) {
-    		var width = element.width(),
+    		var width = element.find('svg').parent().width(),
       			height = 600,
       			damper = 0.2,
 						layout_gravity = .2,
@@ -43,16 +52,16 @@ angular.module('mediconditionalApp')
     				if(d.disease != undefined){
 
 	    				if(d.disease){
-	    					target.x =  parseInt(width/4);
+	    					target.x =  parseInt(width/8);
 	    				} else {
-								 target.x = parseInt(width*3/4)
+								 target.x = parseInt(width*7/8)
 	    				}
     				}
     				if(d.test_positive !=undefined){
     					if(d.test_positive){
-    						target.y = parseInt(height*2/4);
+    						target.y = parseInt(height*1/8);
     					} else {
-								target.y = parseInt(height*3/4);
+								target.y = parseInt(height*7/8);
     					}
 	    			}
 			      d.x = d.x + (target.x - d.x) * (damper + 0.12) * alpha;
@@ -87,10 +96,63 @@ angular.module('mediconditionalApp')
 						circles.exit().remove
 		        force.start();
 			  }
-      	vis = d3.select(element.find('div')[0]).append("svg")
+
+			  var add_prevalence_line = function(){
+			  	vis.append("line")
+						.style("stroke-dasharray", ("3, 3"))
+						.attr("x1", width/2)
+						.attr("x2", width/2)
+						.attr("y1", 0)
+						.attr("y2", height)
+						.attr('stroke-width', 2)
+						.attr('stroke', 'gray');
+			  }
+
+			  var add_specificity_line = function(){
+			  	vis.append("line")
+						.style("stroke-dasharray", ("3, 3"))
+						.attr("x1", width/2)
+						.attr("x2", width)
+						.attr("y1", height/2)
+						.attr("y2", height/2)
+						.attr('stroke-width', 2)
+						.attr('stroke', 'gray');
+			  }
+
+			  var add_sensitivity_line = function(){
+			  	vis.append("line")
+						.style("stroke-dasharray", ("3, 3"))
+						.attr("x1", 0)
+						.attr("x2", width/2)
+						.attr("y1", height/2)
+						.attr("y2", height/2)
+						.attr('stroke-width', 2)
+						.attr('stroke', 'gray');
+			  }
+      	vis = d3.select('svg')
       					.attr("width", width)
                 .attr("height", height)
                 .attr("id", "svg_vis");
+
+
+
+				scope.$watch('is_prevalence_applied', function(new_val){
+					if(new_val){
+						add_prevalence_line();
+					}
+				});
+
+				scope.$watch('is_sensitivity_applied', function(new_val){
+					if(new_val){
+						add_sensitivity_line();
+					}
+				});
+
+				scope.$watch('is_specificity_applied', function(new_val){
+					if(new_val){
+						add_specificity_line();
+					}
+				});
 
 				var force = d3.layout.force()
             .nodes(scope.nodes)
@@ -106,10 +168,11 @@ angular.module('mediconditionalApp')
 							}
 						);
 
-
         scope.$watch("population.total", function(new_val, old_val){
-        	if(new_val>old_val){
-        		for (var j=old_val; j<new_val; j++){
+        	console.log(new_val, old_val||0)
+        	if(new_val>(old_val||0)){
+        		for (var j=old_val||0; j<new_val; j++){
+        		console.log(j)
         			add_nodes(j,20);
         		}
         		update();
@@ -117,7 +180,6 @@ angular.module('mediconditionalApp')
         	}
         })
         scope.$watch('nodes', function(new_val, old_val){
-
         	update();
         }, true)
 
