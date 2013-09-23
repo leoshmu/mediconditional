@@ -1,16 +1,40 @@
 <div class="container">
+<div class="row">
 	<label for="total_population">Population</label>
-	<input name="total_population" type="number" ng-model="population.total"/>
+	<input class="form-control" name="total_population" type="number" ng-model="population.total"/>
+</div>
+<div class="row">
 	<label for="prevalence">Prevalence (per 1000)</label>
-	<input name="prevalence" type="number" ng-model="prevalence"/>
+	<input name="prevalence" class="form-control" type="range" min="0" max="1000" ng-model="prevalence"/>
 	<button type="button" class="btn btn-primary" ng-click="apply_prevalence()">Apply Prevalence</button>
+</div>
 
-	<label for="sensitivity">Sensitivity</label>
-	<input name="sensitivity" type="number" ng-model="sensitivity"/>
-	<button type="button" class="btn btn-primary" ng-click="apply_sensitivity()">Apply Sensitivity</button>
 
-	<label for="specificity">Specificity</label>
-	<input name="specificity" type="number" ng-model="specificity"/>
-	<button type="button" class="btn btn-primary" ng-click="apply_specificity()">Apply Specificity</button>
-	<div ng-force-bubble-chart></div>
+
+	<div class="row">
+		<div class="col-lg-6 text-center">
+			Patient Has Condition ({{population.disease_count}})
+		</div>
+		<div class="col-lg-6 text-center">
+			Patient Doesn't Have Condition ({{population.healthy_count}})
+		</div>
+	</div>
+	<div class="row">
+
+		<div ng-force-bubble-chart></div>
+	</div>
+	<div class="row">
+		<div class="col-lg-6 col-sm-6 text-center">
+			<label for="sensitivity">Sensitivity: {{sensitivity}}%</label>
+			<input class="form-control" name="sensitivity" type="range" ng-model="sensitivity"/>
+			<button type="button" class="btn btn-primary" ng-click="apply_sensitivity()">Apply Sensitivity</button>
+		</div>
+		<div class="col-lg-6 col-sm-6 text-center">
+			<label for="specificity">Specificity: {{specificity}}%</label>
+			<input class="form-control" name="specificity" type="range" ng-model="specificity"/>
+			<button type="button" class="btn btn-primary" ng-click="apply_specificity()">Apply Specificity</button>
+		</div>
+
+	</div>
+
 </div>

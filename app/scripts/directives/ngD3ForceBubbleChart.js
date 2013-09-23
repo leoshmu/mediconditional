@@ -5,9 +5,17 @@ angular.module('mediconditionalApp')
 
   	var fill_color = function(node){
   		if(!node.disease){
-	  		return '#EBD7FC';
+  			if(node.test_positive){
+  				return '#F576A0';
+  			} else {
+		  		return '#EBD7FC';
+  			}
   		} else{
-  			return 'red';
+  			if(node.test_positive){
+  				return '#EDB7B7';
+  			} else {
+  				return '#E62222';
+  			}
   		}
   	}
 
@@ -15,14 +23,14 @@ angular.module('mediconditionalApp')
       template: '<div style="border:solid 2px red;"></div>',
       restrict: 'EA',
       link: function postLink(scope, element, attrs) {
-    		var width = 940,
+    		var width = element.width(),
       			height = 600,
-      			damper = 0.1,
+      			damper = 0.2,
 						layout_gravity = .2,
       			vis,
       			circles,
 
-      			center = {x: width/2, y: height/2};
+      			center = {x: width/4, y: height/4};
 
 
       	var charge = function(d) {
@@ -35,20 +43,20 @@ angular.module('mediconditionalApp')
     				if(d.disease != undefined){
 
 	    				if(d.disease){
-	    					target.y =  parseInt(height/4);
+	    					target.x =  parseInt(width/4);
 	    				} else {
-								 target.y = parseInt(height*3/4)
+								 target.x = parseInt(width*3/4)
 	    				}
     				}
     				if(d.test_positive !=undefined){
     					if(d.test_positive){
-    						target.x = parseInt(width*3/4);
+    						target.y = parseInt(height*2/4);
     					} else {
-								target.x = parseInt(width*1/4);
+								target.y = parseInt(height*3/4);
     					}
 	    			}
-			      d.x = d.x + (target.x - d.x) * (damper + 0.02) * alpha;
-			      d.y = d.y + (target.y - d.y) * (damper + 0.02) * alpha;
+			      d.x = d.x + (target.x - d.x) * (damper + 0.12) * alpha;
+			      d.y = d.y + (target.y - d.y) * (damper + 0.12) * alpha;
 			    };
 			  }
 
@@ -69,12 +77,13 @@ angular.module('mediconditionalApp')
 						      .attr("r", 0)
 
 						      .attr("stroke-width", 2)
-						      .attr("stroke", function(d) {return d3.rgb(fill_color(d)).darker();})
+
 						      .attr("id", function(d) { return  "bubble_" + d.id; })
 						      .attr("cx", function(d) { return  d.x; })
 						      .attr("cy", function(d) { return  d.y; })
 						circles.transition().duration(2000).attr("r", function(d) { return width/scope.nodes.length*4; });
 						circles.attr("fill", function(d) { return fill_color(d) ;})
+						.attr("stroke", function(d) {return d3.rgb(fill_color(d)).darker();})
 						circles.exit().remove
 		        force.start();
 			  }
@@ -108,7 +117,7 @@ angular.module('mediconditionalApp')
         	}
         })
         scope.$watch('nodes', function(new_val, old_val){
-        	console.log('hi')
+
         	update();
         }, true)
 

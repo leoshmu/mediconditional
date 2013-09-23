@@ -12,15 +12,24 @@ angular.module('mediconditionalApp')
 
     $scope.apply_prevalence = function(){
     	var disease = _.sample($scope.nodes, $scope.prevalence * $scope.population.total / 1000);
-    	console.log(disease, _.without($scope.nodes, disease).length);
+    	$scope.population.disease_count  = disease.length;
+    	$scope.population.healthy_count = $scope.population.total - disease.length;
+
     	_.each(_.without($scope.nodes, disease), function(node){
     		node.disease = false;
     	})
     	_.each(disease, function(node){
     		node.disease = true;
     	})
-
     }
+
+    $scope.$watch('prevalence', function(oldVal, newVal){
+    	if(oldVal != newVal){
+	    	$scope.apply_prevalence();
+	    	$scope.apply_sensitivity();
+	    	$scope.apply_specificity();
+    	}
+    });
 
 		$scope.apply_sensitivity = function(){
 			var disease = _.where($scope.nodes, {disease: true});
@@ -32,6 +41,11 @@ angular.module('mediconditionalApp')
 				node.test_positive = true;
 			})
 		}
+		$scope.$watch('sensitivity', function(oldVal, newVal){
+    	if(oldVal != newVal){
+	    	$scope.apply_sensitivity();
+    	}
+    });
 
 		$scope.apply_specificity = function(){
 			var healthy = _.where($scope.nodes, {disease: false});
@@ -43,4 +57,10 @@ angular.module('mediconditionalApp')
 				node.test_positive = false;
 			})
 		}
+
+		$scope.$watch('specificity', function(oldVal, newVal){
+    	if(oldVal != newVal){
+	    	$scope.apply_specificity();
+    	}
+    });
   });
