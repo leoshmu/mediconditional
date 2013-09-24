@@ -35,7 +35,6 @@
 							<span class="numerator text-center">{{population.true_positive_count}} </span>
 							<span class="denominator text-center"> ({{population.true_positive_count}} + {{population.false_positive_count}})</span>
 						</div>
-
 					</div>
 					<div class="bottom-left-label">
 						<div class="fraction-label">
@@ -55,6 +54,29 @@
 		<div class="col-lg-9 col-sm-9">
 			<svg></svg>
 		</div>
-
+		<div class="row chart-bottom-label">
+			<div class="col-lg-3 col-sm-3">
+			</div>
+			<div class="col-lg-9 col-sm-9">
+				<div class="row">
+					<div ng-show="is_prevalence_applied" class="col-lg-6 col-sm-6 text-center">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-primary" ng-click="apply_sensitivity()">Apply Sensitivity {{sensitivity}}%</button>
+							</span>
+							<input class="form-control" name="sensitivity" type="range" ng-model="sensitivity"/>
+						</div>
+					</div>
+					<div ng-show="is_prevalence_applied" class="col-lg-6 col-sm-6 text-center">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-primary" ng-click="apply_specificity()">Apply Specificity {{specificity}}%</button>
+							</span>
+							<input class="form-control" name="specificity" type="range" ng-model="specificity"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
