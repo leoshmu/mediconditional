@@ -28,7 +28,7 @@ angular.module('mediconditionalApp')
 
     return {
       transclude:true,
-      templateUrl: '/views/sensitivity_specificity_chart.html',
+      templateUrl: 'views/sensitivity_specificity_chart.html',
       restrict: 'EA',
 
       link: function postLink(scope, element, attrs) {
