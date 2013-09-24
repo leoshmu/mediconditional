@@ -32,7 +32,7 @@ angular.module('mediconditionalApp')
       restrict: 'EA',
 
       link: function postLink(scope, element, attrs) {
-    		var width = element.find('svg').parent().width(),
+    		var width = element.find('svg').parent().prop('offsetWidth'),
       			height = 600,
       			damper = 0.2,
 						layout_gravity = .2,
