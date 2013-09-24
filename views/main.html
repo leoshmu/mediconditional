@@ -1,0 +1,45 @@
+<div class="container">
+
+
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Basic Setup</h3>
+	  </div>
+	  <div class="panel-body">
+			<div class="row">
+				<div class="col-lg-6 col-sm-6">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-lg-2 col-sm-2 control-label" for="total_population">Population</label>
+							<div class="col-lg-10 col-sm-10">
+								<input class="form-control" name="total_population" type="number" ng-model="population.total">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-lg-6 col-sm-6">
+
+					<div class="input-group">
+		      	<span class="input-group-btn">
+			        <button type="button" class="btn btn-primary" ng-click="apply_prevalence()">Apply Prevalence ({{prevalence/1000}})</button>
+			      </span>
+			      <input name="prevalence" class="form-control" type="range" min="0" max="1000" ng-model="prevalence">
+		    	</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="panel panel-success">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Visualize a Population</h3>
+	  </div>
+	  <div class="panel-body">
+
+	    	<div ng-force-bubble-chart=""></div>
+	  </div>
+	</div>
+
+
+</div>
