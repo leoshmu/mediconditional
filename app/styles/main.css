@@ -65,3 +65,89 @@ svg {
 
   border:solid 2px gray;
 }
+
+.svg-overlay {
+  position:absolute;
+  top:0px;
+  height:600px;
+  width:100%;
+  font-weight: bold
+}
+.partial-opacity {
+  opacity:0.6!important;
+}
+.overlay-left-quadrant{
+  opacity: 0;
+  color:black;
+  background-color: #F291B2;
+  position:absolute;
+  height:100%;
+  width:50%;
+  top:0px;
+}
+
+.overlay-top-left-quadrant{
+  opacity: 0;
+  color:black;
+  background-color: #F598B7;
+  position:absolute;
+  height:50%;
+  width:50%;
+  top:0px;
+}
+
+.overlay-bottom-left-quadrant{
+  opacity: 0;
+  color: white;
+  background-color: #B85374!important;
+  position:absolute;
+  height:50%;
+  width:50%;
+  top:50%;
+}
+
+.overlay-right-quadrant{
+  opacity: 0;
+  background-color: #B7F598;
+  position:absolute;
+  left:50%;
+  height:100%;
+  width:50%;
+  top:0px;
+}
+
+
+.overlay-top-right-quadrant{
+  opacity: 0;
+  position:absolute;
+  color:white;
+  background-color: #6E8F5E;
+  left:50%;
+  height:50%;
+  width:50%;
+  top:0px;
+}
+
+
+.overlay-bottom-right-quadrant{
+  opacity: 0;
+  color:black;
+  background-color: #C6FAAC;
+  position:absolute;
+  left:50%;
+  height:50%;
+  width:50%;
+  top:50%;
+}
+
+.popover {
+  width:500px!important;
+}
+.popover.in {
+ width:500px!important;
+}
+
+.overlay-label {
+  margin-left:10px;
+  font-size:22pt;
+}

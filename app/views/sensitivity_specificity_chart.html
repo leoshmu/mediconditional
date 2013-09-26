@@ -62,7 +62,7 @@
 					<div ng-show="is_prevalence_applied" class="col-lg-6 col-sm-6 text-center">
 						<div class="input-group">
 							<span class="input-group-btn">
-								<button type="button" class="btn btn-primary" ng-click="apply_sensitivity()">Apply Sensitivity {{sensitivity}}%</button>
+								<button popover-trigger="mouseenter" popover-html-unsafe="<h4>Sensitivity tells us how good a test is at finding people with disease.</h4> So a sensitivity of <strong>{{sensitivity}}%</strong> means that if we gave the test to 100 individuals with the disease, <strong>{{sensitivity}}</strong> of them would test positive for the disease. <blockquote>{{100-sensitivity}} of the individuals would have a <strong>'False Negative'</strong> result. The test would imply they don't have the disease, even though they do</blockquote>" type="button" class="btn btn-primary" ng-click="apply_sensitivity()">Apply Sensitivity {{sensitivity}}%</button>
 							</span>
 							<input class="form-control" name="sensitivity" type="range" ng-model="sensitivity"/>
 						</div>
@@ -70,7 +70,7 @@
 					<div ng-show="is_prevalence_applied" class="col-lg-6 col-sm-6 text-center">
 						<div class="input-group">
 							<span class="input-group-btn">
-								<button type="button" class="btn btn-primary" ng-click="apply_specificity()">Apply Specificity {{specificity}}%</button>
+								<button type="button" class="btn btn-primary" ng-click="apply_specificity()" popover-trigger="mouseenter" popover-html-unsafe="<h4>Specificity tells us how good a test is at finding people without disease.</h4> So a specificty of <strong>{{specificty}}%</strong> means that if we gave the test to 100 individuals without the disease, <strong>{{specificty}}</strong> of them would test negative for the disease. <blockquote>{{100-specificty}} of the individuals would have a <strong>'False Positive'</strong> result. The test would imply they have the disease, even though they don't</blockquote>">Apply Specificity {{specificity}}%</button>
 							</span>
 							<input class="form-control" name="specificity" type="range" ng-model="specificity"/>
 						</div>

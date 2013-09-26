@@ -21,7 +21,7 @@
 
 					<div class="input-group">
 		      	<span class="input-group-btn">
-			        <button type="button" class="btn btn-primary" ng-click="apply_prevalence()">Apply Prevalence ({{prevalence/1000}})</button>
+			        <button popover-placement="bottom" popover-trigger="mouseenter"  popover-html-unsafe="<h4>Prevalence is the frequency of a disease within a population.</h4> A disease with a prevalence of <strong>{{prevalence/1000}}</strong> means that all things being equal, <strong>{{prevalence}} out of 1000</strong> individuals would be expected to have the disease, and the remaining <strong>{{1000-prevalence}}<strong> individuals would be expected to be healthy." type="button" class="btn btn-primary" ng-click="apply_prevalence()">Apply Prevalence ({{prevalence/1000}})</button>
 			      </span>
 			      <input name="prevalence" class="form-control" type="range" min="0" max="1000" ng-model="prevalence"/>
 		    	</div>
