@@ -53,6 +53,30 @@
 		</div>
 		<div class="col-lg-9 col-sm-9">
 			<svg></svg>
+			<div class="svg-overlay">
+				<div ng-show="is_prevalence_applied && !is_sensitivity_applied" class="overlay-left-quadrant" chart-region-overlay>
+					<p class="overlay-label">Disease</p>
+				</div>
+
+				<div ng-show="is_prevalence_applied && is_sensitivity_applied" class="overlay-top-left-quadrant" chart-region-overlay>
+					<p class="overlay-label">True Positive</p>
+				</div>
+
+				<div ng-show="is_prevalence_applied && is_sensitivity_applied" class="overlay-bottom-left-quadrant" chart-region-overlay>
+					<p class="overlay-label">False Positive</p>
+				</div>
+
+				<div ng-show="is_prevalence_applied && !is_specificity_applied" class="overlay-right-quadrant" chart-region-overlay>
+					<p class="overlay-label">Healthy</p>
+				</div>
+				<div ng-show="is_prevalence_applied && is_specificity_applied" class="overlay-top-right-quadrant" chart-region-overlay>
+					<p class="overlay-label">False Negative</p>
+				</div>
+				<div ng-show="is_prevalence_applied && is_specificity_applied" class="overlay-bottom-right-quadrant" chart-region-overlay>
+					<p class="overlay-label">True Negative</p>
+				</div>
+
+			</div>
 		</div>
 		<div class="row chart-bottom-label">
 			<div class="col-lg-3 col-sm-3">
