@@ -18,10 +18,10 @@
 			<div ng-show="is_sensitivity_applied || is_specificity_applied" class="chart-left-label row">
 				<div class="col-sm-6 col-lg-6">
 					<div class="top-left-label">
-						Positive Test ({{population.true_positive_count + population.false_positive_count}})
+						Positive Test ({{population.exact_true_positive_count + population.exact_false_positive_count | number: 2}})
 					</div>
 					<div class="bottom-left-label">
-						Negative Test ({{population.true_negative_count + population.false_negative_count}})
+						Negative Test ({{population.exact_true_negative_count + population.exact_false_negative_count | number:2}})
 					</div>
 				</div>
 				<div class="col-sm-6 col-lg-6">
@@ -32,8 +32,8 @@
 							</span>
 						</div>
 						<div class="fraction">
-							<span class="numerator text-center">{{population.true_positive_count}} </span>
-							<span class="denominator text-center"> ({{population.true_positive_count}} + {{population.false_positive_count}})</span>
+							<span class="numerator text-center">{{population.exact_true_positive_count}} </span>
+							<span class="denominator text-center"> ({{population.exact_true_positive_count}} + {{population.exact_false_positive_count}})</span>
 						</div>
 					</div>
 					<div class="bottom-left-label">
@@ -43,8 +43,8 @@
 							</span>
 						</div>
 						<div class="fraction">
-							<span class="numerator text-center">{{population.true_negative_count}} </span>
-							<span class="denominator text-center"> ({{population.true_negative_count}} + {{population.false_negative_count}})</span>
+							<span class="numerator text-center">{{population.exact_true_negative_count}} </span>
+							<span class="denominator text-center"> ({{population.exact_true_negative_count}} + {{population.exact_false_negative_count}})</span>
 						</div>
 
 					</div>
@@ -63,14 +63,14 @@
 				</div>
 
 				<div ng-show="is_prevalence_applied && is_sensitivity_applied" class="overlay-bottom-left-quadrant" chart-region-overlay="">
-					<p class="overlay-label">False Positive</p>
+					<p class="overlay-label">False Negative</p>
 				</div>
 
 				<div ng-show="is_prevalence_applied && !is_specificity_applied" class="overlay-right-quadrant" chart-region-overlay="">
 					<p class="overlay-label">Healthy</p>
 				</div>
 				<div ng-show="is_prevalence_applied && is_specificity_applied" class="overlay-top-right-quadrant" chart-region-overlay="">
-					<p class="overlay-label">False Negative</p>
+					<p class="overlay-label">False Positive</p>
 				</div>
 				<div ng-show="is_prevalence_applied && is_specificity_applied" class="overlay-bottom-right-quadrant" chart-region-overlay="">
 					<p class="overlay-label">True Negative</p>
